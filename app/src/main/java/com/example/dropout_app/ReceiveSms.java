@@ -34,8 +34,9 @@ public class ReceiveSms extends BroadcastReceiver {
                         this.msgBody = msg[i].getMessageBody().toString();// var hold message
                         Toast.makeText(context, "From: " + this.sms_from + " Message: " + this.msgBody.toString(), Toast.LENGTH_SHORT).show();
                         //String data = "{" + "\"moblieNumber\"" + this.sms_from + "\"," + "\"body\"" + this.msgBody.toString() + "\"" + "}";
-                        SendJSON j1 = new SendJSON();
-                        j1.sendJSON(this.sms_from,this.msgBody);
+                        new SendJson().execute(this.sms_from,this.msgBody);
+                        //System.out.println(this.sms_from + this.msgBody);
+                        //j1.doInBackground(this.sms_from,this.msgBody);
 
                     }
 
