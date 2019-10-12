@@ -33,10 +33,7 @@ public class ReceiveSms extends BroadcastReceiver {
                         this.sms_from = msg[i].getOriginatingAddress().toString();// var hold sms receiver
                         this.msgBody = msg[i].getMessageBody().toString();// var hold message
                         Toast.makeText(context, "From: " + this.sms_from + " Message: " + this.msgBody.toString(), Toast.LENGTH_SHORT).show();
-                        //String data = "{" + "\"moblieNumber\"" + this.sms_from + "\"," + "\"body\"" + this.msgBody.toString() + "\"" + "}";
                         new SendJson().execute(this.sms_from,this.msgBody);
-                        //System.out.println(this.sms_from + this.msgBody);
-                        //j1.doInBackground(this.sms_from,this.msgBody);
 
                     }
 
@@ -48,14 +45,7 @@ public class ReceiveSms extends BroadcastReceiver {
         }
     }
 
-    /*public void sendJSON(String data) {
-        final String saveData = data;
-        Object appContext =MainActivity.appContext() ;
-        String URL = "https://us-central1-dropouts-54029.cloudfunctions.net/widgets";
 
-        requestQueue = Volley.newRequestQueue(appContext);
-
-    }*/
 }
 
 
