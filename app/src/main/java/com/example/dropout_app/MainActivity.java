@@ -4,25 +4,36 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 
 public class MainActivity extends AppCompatActivity {
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        button = (Button)findViewById(R.id.buttonCheck);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCheck();
+            }
+        });
+
+        setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
                 != PackageManager.PERMISSION_GRANTED)
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
-        //checkManifest check = new checkManifest();
-        //check.checkStatus();
+
 
 
     }
@@ -37,15 +48,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void sendJSON(String data) {
-        RequestQueue requestQueue;
-        final String saveData = data;
-        Object appContext =getApplicationContext() ;
-        String URL = "https://us-central1-dropouts-54029.cloudfunctions.net/widgets";
+    public void openCheck(){
 
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Intent intent = new Intent(this,Check.class);
+        startActivity(intent);
 
     }
+
 
 
 
