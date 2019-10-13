@@ -19,10 +19,14 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 
-import javax.net.ssl.HttpsURLConnection;
 
 public class SendJson extends AsyncTask<String, Void, String>{
+    private Double responseResult =0.0;
+    public String fromm = "";
+    public String text = "";
+    public Double responseResultt = 0.0;
     public SendJson() {
     }
 
@@ -36,7 +40,7 @@ public class SendJson extends AsyncTask<String, Void, String>{
     private String sendJson(String from, String message) {
         URL url = null;
         try {
-            url = new URL("http://167.172.65.135/predict");
+            url = new URL("http://167.172.79.142/predict");
             System.out.println("Made" + url.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -88,15 +92,38 @@ public class SendJson extends AsyncTask<String, Void, String>{
         try(BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream(), "UTF-8"))) {
             StringBuilder response = new StringBuilder();
             String responseLine;
+            String res="";
             while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-                System.out.println(responseLine);
-                System.out.println(response);
+                res+=responseLine;
             }
+            response.append(res.trim());
+            System.out.println(res);
+            //String predictArr[] = responseLine.split(":");
+
+            responseResult= Double.parseDouble(res);
+
+            System.out.println(responseResult);
+            System.out.println(from);
+
+                //responseResult = (float)parsefloat(responseLine); // Make use of autoboxing.  It's also easier to read.
+
+            //Double.valueOf(responseLine);
+            String txt="";
+            if(responseResult>=60.0)
+                txt="High Risk";
+            else if(responseResult>=40.0)
+                txt="Medium Risk";
+            else if(responseResult>=20.0)
+                txt="Low Risk";
+//            MainActivity main1= new MainActivity();
+//            main1.checkScamMessage(txt, from, responseResult);
+            this.responseResultt = responseResult;
+            this.fromm = from;
+            this.text = txt;
+
+
             System.out.println(response.toString());
-            System.out.println("Got REPLY");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            System.out.println("Got REPLy");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,4 +131,13 @@ public class SendJson extends AsyncTask<String, Void, String>{
         return "error";
     }
 
+    protected void onPostExecute(Boolean success) {
+        if(success){
+            //update layout
+        } else {
+            //show error
+        }
+
+
+    }
 }

@@ -13,7 +13,7 @@ public class Check extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
-        
+
         button = (Button) findViewById(R.id.buttonBack);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
