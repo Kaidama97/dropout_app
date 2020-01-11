@@ -40,7 +40,7 @@ public class SendJson extends AsyncTask<String, Void, String>{
     private String sendJson(String from, String message) {
         URL url = null;
         try {
-            url = new URL("http://167.172.79.142/predict");
+            url = new URL("http://165.22.105.12/predict");
             System.out.println("Made" + url.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();

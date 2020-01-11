@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         getAppContext();
         AlertDialog builder = new AlertDialog.Builder(context).create();
         builder.setTitle(title+" Phone Number");
-        builder.setMessage("Phone Number: "+  from +"Have a safety rating of:"+ result);
+        builder.setMessage("Phone Number: "+  from +"Have a scam rating of:"+ result);
 
 
         //Button One : Yes
